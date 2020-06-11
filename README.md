@@ -15,7 +15,7 @@ As seen in the table below, you can optionally and ideally knit your code notebo
 You should insert the name and description of your Challenge here, with a link to the Challenge project. 
 
 ## Post-challenge analyses
-This table captures all of the post challenge analysis and allows anyone visiting the repo to easily find the analyses. I
+Here's a summary of the analyses we've run so far. 
 
 |analysis|description|
 |--|--|
