@@ -1,6 +1,12 @@
 # Challenge Analysis Template
 A template project for post-challenge analysis with template R markdown files describing important analyses.
 
+## The Template Challenge
+You should insert the name and description of your Challenge here, with a link to the Challenge project. 
+
+## Post-challenge analyses
+
+This table captures all of the post challenge analysis and allows anyone visiting the repo to easily find the analyses. If you are using R or JuPyteR notebooks, you should knit them to html and push them to Github so that they can be displayed on github.io. In order to set this up, you should enable Github Pages in the Settings for your project, and configure it to use the `gh-pages` branch as source. Once you've done this, any `html` files in the `gh-pages` branch will be rendered on github.io. 
 
 |analysis|description|
 |--|--|
