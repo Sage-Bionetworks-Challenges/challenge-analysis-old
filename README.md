@@ -1,5 +1,12 @@
 # Challenge Analysis Template
-A template project for post-challenge analysis with template R markdown files describing important analyses.
+What this project is: A template project for post-challenge analysis with template R markdown files describing important common post-challenge analyses, and a general explanation of how they are done.
+
+What this project isn't: A codebase for running analyses.
+
+## Template structure
+
+`/analysis`: Contains all code notebooks and rendered `html` notebooks.
+`/data`: Small data files can be stored here if need be, but storing the data on the Synapse project for the challenge is recommended and preferred. 
 
 ## The Template Challenge
 You should insert the name and description of your Challenge here, with a link to the Challenge project. 
