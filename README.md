@@ -11,7 +11,9 @@ What this project isn't: A codebase for running analyses.
 ## Using github.io
 As seen in the table below, you can optionally and ideally knit your code notebooks to html so that they can be displayed on github.io. In order to set this up, you should enable Github Pages in the Settings for your project, and configure it to use the `gh-pages` branch as source. Once you've done this, any `html` files in the `gh-pages` branch will be rendered on github.io. 
 
-## The Template Challenge
+-----
+
+# Your Challenge Name Here
 You should insert the name and description of your Challenge here, with a link to the Challenge project. 
 
 ## Post-challenge analyses
