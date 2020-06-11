@@ -6,7 +6,7 @@ What this project isn't: A codebase for running analyses.
 ## Template structure
 `/analysis`: Contains all code notebooks and rendered `html` notebooks.
 
-`/data`: Small data files can be stored here if need be, but storing the data on the Synapse project for the challenge is recommended and preferred. 
+`/data`: Where is `/data`? It's a better practice to store the data on Synapse, in the challenge project.
 
 ## Using github.io
 As seen in the table below, you can optionally and ideally knit your code notebooks to html so that they can be displayed on github.io. In order to set this up, you should enable Github Pages in the Settings for your project, and configure it to use the `gh-pages` branch as source. Once you've done this, any `html` files in the `gh-pages` branch will be rendered on github.io. 
