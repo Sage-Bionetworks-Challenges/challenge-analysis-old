@@ -1,6 +1,6 @@
 ---
 title: "Bootstrap analysis: Determine top performers"
-author: "a name like Dorothy Vaughan"
+author: "a name like Annie Easley"
 date: "`r Sys.Date()`"
 output:
   html_document:
