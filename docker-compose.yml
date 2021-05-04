@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  rstudio:
+    # image: rocker/rstudio:4.0.4  # missing libs required by synapser
+    image: tschaffter/rstudio:latest  # TODO replace by sage-bionetworks/rstudio
+    container_name: challenge-analysis-rstudio
+    env_file:
+      .env
+    volumes:
+      - .:/home/rstudio/challenge-analysis:rw
+    ports:
+      - "${HOST_PORT}:8787"

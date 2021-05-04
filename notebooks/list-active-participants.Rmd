@@ -1,0 +1,138 @@
+---
+title: "List active participants"
+author: "Thomas Schaffter, thomas.schaffter@sagebionetworks.org"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_notebook:
+    code_folding: hide
+---
+
+```{r}
+# Starts from a clean slate
+rm(list=ls())
+
+# The Docker image rocker/rstudio is missing some system libraries required by
+# the R libraries used in this notebook. Let's installed them:
+# docker exec -it <rocker_container_id> apt-get install zlib1g-dev libxml2-dev
+# Install the packages that are not yet installed
+packages <- c(
+  # "anytime",
+  # "ggplot2",
+  # "lubridate",
+  # "reshape2",
+  # "rprojroot",
+  # "tidyverse"
+)
+new.packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+if (length(new.packages)) install.packages(new.packages)
+
+# Install synapser using the official method
+if (!"synapser" %in% installed.packages()[,"Package"]) {
+  install.packages("synapser", repos = c("http://ran.synapse.org", "http://cran.fhcrc.org"))
+}
+```
+
+```{r}
+# library("anytime")
+# library("ggplot2")
+# library("lubridate")
+# library("reshape2")
+# library("rprojroot")
+library("synapser")
+# library("tidyverse")
+
+# Set your credentials in ~/.synapseConfig instead of specifying them in clear here
+# https://docs.synapse.org/articles/client_configuration.html
+# synLogin("syn_username", "passowrd")
+
+# The docker image tschaffter/rstudio created ~/.synapseConfig at startup so 
+# there is no need to specify credentials here.
+synLogin()
+```
+
+```{r}
+library(reticulate)
+conda_list(conda = "auto")
+conda_list()
+```
+
+
+```{r}
+evaluationIds = list(
+  # fastLane = '9614311',
+  main = '9614453',  # Q1
+  uw = '9614494'  # Q1
+  # uw_final = '9614404'
+)
+```
+
+
+## Input
+
+```{r}
+evaluationId <- '9614453'
+```
+
+## Data
+
+Submissions to `EHR DREAM Challenge Submission (9614309)`:
+
+```{r}
+evaluation <- synGetEvaluation(evaluationId)
+evaluation
+```
+
+Get submission entities:
+
+```{r}
+iterator <- synGetSubmissions(evaluationId, status=NULL)
+subs <- as.list(iterator)
+length(subs)
+```
+
+DEMO only: keep first 50 submissions to reduce runtime:
+
+```{r}
+subs <- subs[1:50]
+```
+
+Get additional information for each submission:
+
+```{r}
+main_data <- do.call(rbind, lapply(subs, function(sub) {
+  user <- synGetUserProfile(sub$userId)
+  team <- NULL
+  if (!is.null(sub$teamId)) {
+    team <- synGetTeam(sub$teamId)
+  }
+
+  status <- synGetSubmissionStatus(sub$id)
+
+  data.frame(
+    subId = sub$id,
+    submitterId = if (is.null(team)) sub$userId else team$id,
+    submitterName = if (is.null(team)) user$userName else team$name,
+    isTeam = !is.null(team),
+    status = status$status,
+    createdOn = sub$createdOn,
+    stringsAsFactors = FALSE
+  )
+}))
+head(main_data)
+main_data
+```
+
+Get list of participants associated to a valid submission:
+
+```{r}
+sub <- subs[[2]]
+
+sub$contributors[2]
+
+
+pyCall("count", args=list(1:3))
+
+
+pyGetSimple("sub$contributors[0]")
+```
+
