@@ -5,8 +5,14 @@ services:
     # image: rocker/rstudio:4.0.4  # missing libs required by synapser
     image: tschaffter/rstudio:latest  # TODO replace by sage-bionetworks/rstudio
     container_name: challenge-analysis-rstudio
-    env_file:
-      .env
+    environment:
+      - USER=${RSTUDIO_USER}
+      - PASSWORD=${RSTUDIO_PASSWORD}
+      - USERID=${RSTUDIO_USERID}
+      - GROUPID=${RSTUDIO_GROUPID}
+      - ROOT=${RSTUDIO_ROOT}
+      - SYNAPSE_USERNAME
+      - SYNAPSE_API_KEY
     volumes:
       - .:/home/rstudio/challenge-analysis:rw
     ports:
