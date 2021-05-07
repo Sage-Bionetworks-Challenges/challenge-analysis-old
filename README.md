@@ -1,6 +1,6 @@
 # Challenge Analysis Template
 
-A template project for challenge analysis in R
+A template project for challenge analysis in R and Python
 
 ## Usage
 
