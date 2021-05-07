@@ -12,5 +12,6 @@ RUN conda init bash \
     # Fix libssl issue that affects conda env used with reticulate
     && cp /usr/lib/x86_64-linux-gnu/libssl.so.1.1 \
         /opt/miniconda/envs/${conda_env}/lib/libssl.so.1.1 \
+    # TODO next line not needed if run in base image
     && conda activate base || true \
     && echo "conda activate ${conda_env}" >> ~/.bashrc
