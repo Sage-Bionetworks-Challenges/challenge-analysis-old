@@ -1,4 +1,4 @@
-name: awesome-analysis
+name: challenge-analysis
 channels:
   - defaults
 dependencies:

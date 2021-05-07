@@ -46,7 +46,7 @@ conda_list(conda = "auto")
 
 ```{r}
 # Activate conda environment
-use_condaenv("awesome-analysis", required = TRUE)
+use_condaenv("challenge-analysis", required = TRUE)
 ```
 
 ```{r}
@@ -54,7 +54,7 @@ use_condaenv("awesome-analysis", required = TRUE)
 synapseclient <- reticulate::import('synapseclient')
 syn <- synapseclient$Synapse()
 
-# The docker image tschaffter/rstudio creates ~/.synapseConfig at startup so 
+# The docker image tschaffter/rstudio creates ~/.synapseConfig at startup so
 # there is no need to specify the credentials here.
 syn$login()
 ```
@@ -97,7 +97,7 @@ for contributor_id in contributor_ids:
   profiles.append(r.syn.getUserProfile(contributor_id))
 ```
 
-Get the first name, last name and @synapse.org email address of the 
+Get the first name, last name and @synapse.org email address of the
 contributors:
 
 ```{r}

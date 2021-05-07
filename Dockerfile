@@ -5,7 +5,7 @@ FROM tschaffter/rstudio:latest
 COPY conda /tmp/conda
 
 # Create conda env
-ARG conda_env="awesome-analysis"
+ARG conda_env="challenge-analysis"
 RUN conda init bash \
     && conda env create -f /tmp/conda/${conda_env}/${conda_env}.yaml \
     && rm -fr /tmp/conda/${conda_env} \
