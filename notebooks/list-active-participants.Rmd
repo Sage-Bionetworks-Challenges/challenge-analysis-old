@@ -45,8 +45,8 @@ conda_list(conda = "auto")
 ```
 
 ```{r}
-# Activate Sage conda environment
-use_condaenv("sage", required = TRUE)
+# Activate conda environment
+use_condaenv("awesome-analysis", required = TRUE)
 ```
 
 ```{r}
