@@ -1,0 +1,112 @@
+---
+title: "List active participants"
+author: "Thomas Schaffter, thomas.schaffter@sagebionetworks.org"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_notebook:
+    code_folding: hide
+---
+
+```{r}
+# Starts from a clean slate
+rm(list=ls())
+```
+
+```{r results='hide'}
+# Use the package versions listed in renv.lock
+renv::restore()
+# Install dependencies
+packages <- c(
+  # 'dplyr',
+  # 'fs',
+  # 'jsonlite',
+  # 'parallel',
+  # 'purrr',
+  # 'renv',
+  'reticulate'
+  # 'rlist',
+  # 'rprojroot',
+  # 'stringr',
+  # 'tibble',
+  # 'tidyr',
+  # 'xml2'
+)
+# TODO: Shall we also check the version of the package installed instead of just
+# the name?
+new.packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+if (length(new.packages)) install.packages(new.packages)
+
+# Import dependencies
+noop <- lapply(packages, require, character.only = TRUE)
+```
+
+```{r}
+conda_list(conda = "auto")
+```
+
+```{r}
+# Activate conda environment
+use_condaenv("challenge-analysis", required = TRUE)
+```
+
+```{r}
+# Prepare Synapse Python Client
+synapseclient <- reticulate::import('synapseclient')
+syn <- synapseclient$Synapse()
+
+# The docker image tschaffter/rstudio creates ~/.synapseConfig at startup so
+# there is no need to specify the credentials here.
+syn$login()
+```
+
+## Input
+
+```{r}
+evaluationId <- '9614453'
+```
+
+## Data
+
+Get information about the evaluation queue:
+
+```{r}
+evaluation <- syn$getEvaluation(evaluationId)
+evaluation$name
+```
+
+Get the Synapse user ID of contributors associated to a successful submission:
+
+```{python}
+contributor_ids = set()
+status_set = set()
+
+# TODO avoid loops/nested loops
+for submission in r.syn.getSubmissions(r.evaluation):
+  status = r.syn.getSubmissionStatus(submission)
+  if status.status == 'ACCEPTED':  # usually SCORED
+    for contributor in submission.contributors:
+      contributor_ids.add(contributor['principalId'])
+```
+
+Get the Synapse profile of the contributors:
+
+```{python}
+profiles = []
+
+for contributor_id in contributor_ids:
+  profiles.append(r.syn.getUserProfile(contributor_id))
+```
+
+Get the first name, last name and @synapse.org email address of the
+contributors:
+
+```{r}
+contacts <- do.call(rbind, lapply(py$profiles, function(profile) {
+  data.frame(
+    firstName = tryCatch(profile$firstName, error=function(err) NA),
+    lastName = tryCatch(profile$lastName, error=function(err) NA),
+    email = tryCatch(paste0(profile$userName, '@synapse.org'), error=function(err) NA)
+  )
+}))
+contacts
+```
