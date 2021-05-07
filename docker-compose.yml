@@ -3,7 +3,10 @@ version: "3.8"
 services:
   rstudio:
     # image: rocker/rstudio:4.0.4  # missing libs required by synapser
-    image: tschaffter/rstudio:latest  # TODO replace by sage-bionetworks/rstudio
+    # image: tschaffter/rstudio:latest  # TODO replace by sage-bionetworks/rstudio
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: challenge-analysis-rstudio
     environment:
       - USER=${RSTUDIO_USER}
