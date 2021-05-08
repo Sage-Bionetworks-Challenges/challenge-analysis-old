@@ -2,6 +2,8 @@
 .empty/
 .env
 notebooks/*.html
+notebooks/*.log
+notebooks/*.tex
 
 # History files
 .Rhistory
