@@ -13,10 +13,8 @@ A template project for challenge analysis in R and Python
 
        docker-compose up
 
-RStudio is now available at http://localhost:8787. On the login page, enter the
-default username (`rstudio`) and the password specified in `.env`. Upon
-successful login, open the project provided by this repository via `File > Open
-Project...` and select the project file `challenge-analysis.Rproj`.
+RStudio is now available at http://localhost. On the login page, enter the
+default username (`rstudio`) and the password specified in `.env`.
 
 To stop the API service, enter `Ctrl+C` followed by `docker-compose down`.  If
 running in detached mode, you will only need to enter `docker-compose down`.
