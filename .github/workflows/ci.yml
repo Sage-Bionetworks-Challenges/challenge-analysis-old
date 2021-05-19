@@ -120,6 +120,7 @@ jobs:
     - name: Export environment variables
       run: |
         cp .env.example .env
+        echo -e "" >> .env
         echo -e "PASSWORD=${{ secrets.RSTUDIO_PASSWORD }}" >> .env
         echo -e "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" >> .env
         cat .env
