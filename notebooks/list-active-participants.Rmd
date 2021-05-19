@@ -28,10 +28,10 @@ options(reticulate.repl.quiet = TRUE)
 conda_list(conda = "auto")
 ```
 
-Activate the environment `challenge-analysis`.
+Activate the environment `sage-bionetworks`.
 
 ```{r}
-use_condaenv("challenge-analysis", required = TRUE)
+use_condaenv("sage-bionetworks", required = TRUE)
 ```
 
 # Loging into your Synapse account
