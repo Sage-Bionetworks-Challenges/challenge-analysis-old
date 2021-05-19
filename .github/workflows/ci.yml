@@ -120,7 +120,7 @@ jobs:
     - name: Export environment variables
       run: |
         cp .env.example .env
-        echo "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" >> .env
+        echo -e "\nSYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" >> .env
         cat .env
         export $(grep -v '^#' .env | xargs -d '\n')
     - name: Generate HTML notebooks
