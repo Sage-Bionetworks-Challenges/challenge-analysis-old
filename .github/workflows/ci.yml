@@ -118,7 +118,11 @@ jobs:
     #     repository: ${{ env.docker_repository }}
 
     - name: Export environment variables
-      run: export $(grep -v '^#' .env | xargs -d '\n')
+      run: |
+        cp .env.example > .env
+        echo "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" >> .env
+        cat .env
+        export $(grep -v '^#' .env | xargs -d '\n')
     - name: Generate HTML notebooks
       uses: docker://tschaffter/rstudio:4.0.5-6d365007
       with:
