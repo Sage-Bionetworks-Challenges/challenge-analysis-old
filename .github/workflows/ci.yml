@@ -121,13 +121,12 @@ jobs:
       run: |
         cp .env.example .env
         printf "%s\n" \
-            "PASSWORD=${{ secrets.RSTUDIO_PASSWORD }}" \
-            "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" | tee -a .env >/dev/null
+          "PASSWORD=yourpassword2" \
+          "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" | tee -a .env >/dev/null
         export $(grep -v '^#' .env | xargs -d '\n')
     - name: Generate HTML notebooks
       uses: docker://tschaffter/rstudio:4.0.5-6d365007
       with:
-        # entrypoint:
         args: render /github/workspace/notebooks/list-active-participants.Rmd
     - name: List HTML notebooks
       run: ls -al notebooks/*.html
