@@ -15,6 +15,6 @@ services:
       - ROOT=${RSTUDIO_ROOT}
       - SYNAPSE_TOKEN
     volumes:
-      - .:/home/rstudio/awesome-project:rw
+      - .:/home/rstudio/challenge-analysis:rw
     ports:
       - "${HOST_PORT}:8787"
