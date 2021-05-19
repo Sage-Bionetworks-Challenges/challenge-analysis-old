@@ -117,6 +117,8 @@ jobs:
     #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
     #     repository: ${{ env.docker_repository }}
 
+    - name: Export environment variables
+      run: export $(grep -v '^#' .env | xargs -d '\n')
     - name: Generate HTML notebooks
       uses: docker://tschaffter/rstudio:4.0.5-6d365007
       with:
