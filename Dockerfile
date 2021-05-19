@@ -1,4 +1,4 @@
-FROM sagebionetworks/rstudio:4.0.5-e572e79d
+FROM tschaffter/rstudio:4.0.5-6d365007
 
 # Create conda environments
 COPY conda /tmp/conda

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   rstudio:
-    image: sagebionetworks/rstudio:4.0.5
+    image: tschaffter/rstudio:4.0.5-6d365007
     build:
       context: .
       dockerfile: Dockerfile
