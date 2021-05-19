@@ -1,9 +1,10 @@
 # Project specific files
 .empty/
 .env
-notebooks/*.html
-notebooks/*.log
-notebooks/*.tex
+renv/
+notebooks/**/*.html
+notebooks/**/*.log
+notebooks/**/*.tex
 
 # History files
 .Rhistory

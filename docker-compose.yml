@@ -2,20 +2,19 @@ version: "3.8"
 
 services:
   rstudio:
-    image: sagebionetworks/challenge-analysis:latest
+    image: sagebionetworks/rstudio:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: challenge-analysis-rstudio
+    container_name: rstudio
     environment:
       - USER=${RSTUDIO_USER}
       - PASSWORD=${RSTUDIO_PASSWORD}
       - USERID=${RSTUDIO_USERID}
       - GROUPID=${RSTUDIO_GROUPID}
       - ROOT=${RSTUDIO_ROOT}
-      - SYNAPSE_USERNAME
-      - SYNAPSE_API_KEY
+      - SYNAPSE_TOKEN
     volumes:
-      - .:/home/rstudio/challenge-analysis:rw
+      - .:/home/rstudio/awesome-project:rw
     ports:
       - "${HOST_PORT}:8787"
