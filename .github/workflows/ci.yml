@@ -121,9 +121,9 @@ jobs:
       run: |
         cp .env.example .env
         printf "%s\n" \
-          "PASSWORD=yourpassword2" \
+          "PASSWORD=${{ secrets.RSTUDIO_PASSWORD }}" \
           "SYNAPSE_TOKEN=${{ secrets.SYNAPSE_TOKEN }}" | tee -a .env >/dev/null
-        export $(grep -v '^#' .env | xargs -d '\n')
+        cat .env >> $GITHUB_ENV
     - name: Generate HTML notebooks
       uses: docker://tschaffter/rstudio:4.0.5-6d365007
       with:
