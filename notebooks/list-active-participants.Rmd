@@ -34,6 +34,22 @@ Activate the environment `challenge-analysis`.
 use_condaenv("challenge-analysis", required = TRUE)
 ```
 
+# Loging into your Synapse account
+
+```{r}
+# Prepare Synapse Python Client
+synapseclient <- reticulate::import('synapseclient')
+syn <- synapseclient$Synapse()
+# This Docker image creates the file ~/.synapseConfig with your credentials when
+# the container starts so there is no need to specify the credentials here,
+# hence preventing the risk of publishing this information to public Git
+# repositories.
+syn$login()
+```
+
+Upon successful logging, the message "Welcome, <your name>!" should be displayed
+above.
+
 ## Input
 
 ```{r}
