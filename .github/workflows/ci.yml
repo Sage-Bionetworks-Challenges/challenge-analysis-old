@@ -126,8 +126,8 @@ jobs:
     - name: Generate HTML notebooks
       uses: docker://tschaffter/rstudio:4.0.5-6d365007
       with:
-        entrypoint: render
-        args: /github/workspace/notebooks/list-active-participants.Rmd
+        # entrypoint:
+        args: render /github/workspace/notebooks/list-active-participants.Rmd
     - name: List HTML notebooks
       run: ls -al notebooks/*.html
 
